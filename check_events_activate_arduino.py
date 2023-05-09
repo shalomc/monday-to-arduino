@@ -40,6 +40,7 @@ def main():
             time.sleep(1)
             board.digital[arduino_digital_pin].write(0)
             time.sleep(1)
+        board.exit()
 
 if __name__ == '__main__':
     main()

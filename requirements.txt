@@ -1,3 +1,5 @@
 requests
 pyfirmata
-serial
+pyserial
+
+# pip install -r requirements.txt

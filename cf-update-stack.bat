@@ -1,8 +1,8 @@
 @echo off
-set STACK_NAME=sqs-lambda
-set REGION=us-west-2
-set TEMPLATE=cloudformation-unified-lambda.yaml
-set AWSPROFILE=default
+set STACK_NAME=monday-to-arduino
+set REGION=eu-central-1
+set TEMPLATE=cloudformation-monday-to-arduino.yaml
+set AWSPROFILE=metamoneta
 
 @call aws cloudformation update-stack --stack-name %STACK_NAME% ^
     --no-use-previous-template ^
@@ -11,3 +11,5 @@ set AWSPROFILE=default
     --parameters ParameterKey=APIKEY,UsePreviousValue=true ^
     --profile %AWSPROFILE% ^
     --region %REGION%
+
+@call private\cf-install-in-s3.bat
