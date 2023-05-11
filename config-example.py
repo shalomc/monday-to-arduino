@@ -1,4 +1,4 @@
 
-Authorization = "some secret value"
-URL = "https://zzzzzzzzzzzzzzzzz.lambda-url.us-west-2.on.aws/read"
-arduino_digital_pin = 4
+Authorization = "use the APIKEY value from the Cloudformation output"
+URL = "use the URLtoRead value from the Cloudformation output, without the query string"
+arduino_digital_pin = 4  # whichever pin you use
