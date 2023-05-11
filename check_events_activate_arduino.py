@@ -2,7 +2,6 @@ import pyfirmata
 import time
 import requests
 import json
-# import serial
 import serial.tools.list_ports
 
 import config
