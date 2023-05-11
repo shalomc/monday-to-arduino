@@ -35,8 +35,9 @@ def main():
         COMport = find_arduino_com_port()
         print(f"Arduino is connected on port: {COMport}")
         board = pyfirmata.Arduino(COMport, baudrate=57600)
+        board.digital[arduino_digital_pin].mode = pyfirmata.PWM
         for i in range(3):
-            board.digital[arduino_digital_pin].write(1)
+            board.digital[arduino_digital_pin].write(100)
             time.sleep(1)
             board.digital[arduino_digital_pin].write(0)
             time.sleep(1)

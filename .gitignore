@@ -135,3 +135,5 @@ private*
 private_api_key.py
 temporary/
 config.py
+tests/
+try*
