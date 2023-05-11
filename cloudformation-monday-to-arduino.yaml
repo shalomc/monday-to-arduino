@@ -254,6 +254,9 @@ Outputs:
     Description: The URL of the POST /write endpoint
     Value: !Sub 'POST to ${LambdaURL.FunctionUrl}write?key=${APIKEY}'
   URLtoRead:
+    Description: The URL of the GET /read endpoint without the query string
+    Value: !Sub 'GET from ${LambdaURL.FunctionUrl}read'
+  FullURLtoRead:
     Description: The URL of the GET /read endpoint
     Value: !Sub 'GET from ${LambdaURL.FunctionUrl}read?key=${APIKEY}'
   APIKEY:
