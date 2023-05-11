@@ -1,5 +1,5 @@
 ##Monday to Arduino
-
+Read the article on Monday: https://medium.com/@shalomcarmel/how-monday-and-arduino-light-my-desk-de41ba247197 
 ### Installation of the Cloudformation template
 Log into your AWS account and click one of the following URL for a quick installation in the some popular regions. 
 After the Cloudformation stack is active, check the stack outputs for the URLs to use for writing events and for reading events. 
