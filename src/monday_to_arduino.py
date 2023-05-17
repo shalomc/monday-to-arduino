@@ -2,12 +2,14 @@ import json
 import boto3
 import os
 import base64
-# import module
 import urllib.parse
 import re
 
 isLambda   = "LAMBDA_RUNTIME_DIR" in os.environ
 
+####################################################################################
+######### simple Queue abstraction layer between the logic and the implementation  #
+####################################################################################
 class Queue():
     def __init__(self, **kwargs):
         self.region = kwargs.get('region','us-east-1')
@@ -58,13 +60,14 @@ class Queue():
                                                         )
         return self.response['Attributes']['ApproximateNumberOfMessages']
 
-
     def purgeQueue(self):
         try:
             self.response = self.queue.purge_queue(QueueUrl=self.queue_url)
         except self.queue.exceptions.PurgeQueueInProgress as e:
             self.response = {"error": str(e)}
 # ------ end of class
+
+# Check is event is authorized
 def authorized(event):
     apikey = os.environ.get('APIKEY')
     authorization_object = event['headers'].get('authorization', 'no').split()
@@ -74,6 +77,9 @@ def authorized(event):
     else:
         return False
 
+# Event bodies arrive on POST or PUT http events.
+# This helper function deals with all kinds of
+# content and different encodings.
 def get_body(event):
     isBase64Encoded = event.get("isBase64Encoded", False)
     event_body_raw = event.get('body', '{}')
@@ -94,11 +100,13 @@ def get_body(event):
         response = dict(body=event_body)
     return response
 
+# Return the response for /diagnostics, if enabled
 def diagnostics(event, context):
     response = dict(event)
     response["environ"] = dict(os.environ)
     return response
 
+####################################################################
 def main(event=None, context=None):
     print(json.dumps(event))
     skip_authorization = os.environ.get('SKIP_AUTHORIZATION','false').lower()=='true'
